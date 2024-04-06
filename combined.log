@@ -1,0 +1,5 @@
+{"level":"info","message":"Server is running on port 3000","timestamp":"2024-04-06 23:32:22"}
+{"level":"info","message":"GET /app/api/addresses?phone_number=+16135550135","timestamp":"2024-04-06 23:32:32"}
+{"level":"error","message":"Phone number is required","timestamp":"2024-04-06 23:32:32"}
+{"level":"info","message":"GET /app/api/addresses?phoneNumber=+16135550135","timestamp":"2024-04-06 23:33:05"}
+{"level":"info","message":"Fetched addresses for customer with phone number  16135550135","timestamp":"2024-04-06 23:33:06"}
