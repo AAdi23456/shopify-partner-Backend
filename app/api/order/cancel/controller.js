@@ -27,15 +27,16 @@ router.post('/', async (req, res) => {
     const order = await shopify.order.list({ query: orderNumber });
 
 
-    if (!order) {
+    if (order.length===0) {
       logger.error('Order not found');
+      res.status(404).json({eror:`Order ${orderNumber} no found`});
       throw new Error('Order not found');
     }
 
     const cancelledOrder = await shopify.order.cancel(order[0].id);
 
     logger.info(`Order ${orderNumber} has been cancelled`);
-    res.json(cancelledOrder);
+    res.status(200).json({msg:`Order ${orderNumber} has been cancelled`,cancelledOrder});
   } catch (error) {
     logger.error(`Error occurred in cancelling order: ${error.message}`);
     console.error('Error occurred in cancelling order:', error);

@@ -40,7 +40,7 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
 
 ### 2. Cancel an Order
 
-- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/orders`
+- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/order/cancel/`
 - **Method**: `POST`
 - **Description**: Cancels an order based on its order number.
 - **Required Parameters**:
@@ -51,7 +51,7 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
   Content-Type: application/json
 
   {
-    "orderNumber": "1005"
+    "orderNumber": "1006"
   }
   ```
 - **Sample Response**:
