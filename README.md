@@ -38,34 +38,8 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
   ]
   ```
 
-### 2. Cancel an Order
 
-- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/order/cancel/`
-- **Method**: `POST`
-- **Description**: Cancels an order based on its order number.
-- **Required Parameters**:
-  - `orderNumber`: Order number of the order to be cancelled.
-- **Sample Request**:
-  ```http
-  POST /orders
-  Content-Type: application/json
-
-  {
-    "orderNumber": "1006"
-  }
-  ```
-- **Sample Response**:
-  ```json
-  {
-    "message": "Order 987654321 has been cancelled",
-    "cancelledOrder": {
-      "orderId": "987654321",
-      "status": "cancelled"
-    }
-  }
-  ```
-
-### 3. Update Customer Address
+### 2. Update Customer Address
 
 - **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/address/update/`
 - **Method**: `PUT`
@@ -107,28 +81,8 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
   }
   ```
 
-### 4. Retrieve Order Details by Order Number
 
-- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/order`
-- **Method**: `GET`
-- **Description**: Retrieves details of an order based on its order number.
-- **Required Parameters**:
-  - `orderNumber`: Order number of the order to retrieve details.
-- **Sample Request**:
-  ```http
-  GET /orders?orderNumber=1234567890
-  ```
-- **Sample Response**:
-  ```json
-  {
-    "orderId": "1234567890",
-    "customerName": "John Doe",
-    "totalPrice": 100.50,
-    "status": "shipped"
-  }
-  ```
-
-### 5. Retrieve Orders by Customer Phone Number
+### 3. Retrieve Orders by Customer Phone Number
 
 - **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/orders?phoneNumber=`
 - **Method**: `GET`
@@ -157,6 +111,55 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
   ]
   ```
 
+### 4. Retrieve Order Details by Order Number
+
+- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/order`
+- **Method**: `GET`
+- **Description**: Retrieves details of an order based on its order number.
+- **Required Parameters**:
+  - `orderNumber`: Order number of the order to retrieve details.
+- **Sample Request**:
+  ```http
+  GET /orders?orderNumber=1234567890
+  ```
+- **Sample Response**:
+  ```json
+  {
+    "orderId": "1234567890",
+    "customerName": "John Doe",
+    "totalPrice": 100.50,
+    "status": "shipped"
+  }
+  ```
+
+
+### 5. Cancel an Order
+
+- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/order/cancel/`
+- **Method**: `POST`
+- **Description**: Cancels an order based on its order number.
+- **Required Parameters**:
+  - `orderNumber`: Order number of the order to be cancelled.
+- **Sample Request**:
+  ```http
+  POST /orders
+  Content-Type: application/json
+
+  {
+    "orderNumber": "1006"
+  }
+  ```
+- **Sample Response**:
+  ```json
+  {
+    "message": "Order 987654321 has been cancelled",
+    "cancelledOrder": {
+      "orderId": "987654321",
+      "status": "cancelled"
+    }
+  }
+  ```
+
 ## Error Handling
 
 - **400 Bad Request**: Missing or invalid parameters.
@@ -164,4 +167,3 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
 - **500 Internal Server Error**: Server encountered an unexpected condition.
 ```
 
-This README file provides comprehensive documentation for each endpoint, including their descriptions, required parameters, sample requests, and sample responses. Adjust the sample data and descriptions according to your actual API implementation.
