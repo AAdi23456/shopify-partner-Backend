@@ -13,9 +13,9 @@ const passKey = process.env.SHOPIFY_PASSWORD;
 router.get('/', async (req, res) => {
   const { phoneNumber } = req.query;
 
-  if (!phoneNumber) {
-    logger.error('Phone number is required');
-    return res.status(400).json({ error: 'Phone number is required' });
+  if (!phoneNumber || phoneNumber.length!==10) {
+    logger.error('Phone number is required or not valid phone number');
+    return res.status(400).json({ error: 'Phone number is required or not valid phone number' });
   }
 
   try {
