@@ -17,6 +17,7 @@ router.put('/', async (req, res) => {
       logger.error('Missing required fields');
       return res.status(400).json({ error: 'Missing required fields' });
     }
+    addressData.default = true
 
     const shopify = new Shopify({
       shopName: Name,
@@ -27,6 +28,10 @@ router.put('/', async (req, res) => {
 
 
     const customerId = findCustomerIdByAddressId(addressId, searchResult)
+    if (!customerId) {
+      logger.error(`Error occurred in updating address: this addressId does not exist`);
+      res.status(404).json({ error: "This addressId does not exist" });
+    }
     const updatedAddress = await shopify.customerAddress.update(customerId, addressId, addressData);
 
     logger.info(`Address updated successfully for customerId: ${customerId}, addressId: ${addressId}`);
@@ -45,6 +50,6 @@ function findCustomerIdByAddressId(addressId, customerData) {
       }
     }
   }
-  return null; // Return null if no customer found with the given address ID
+  return null;
 }
 module.exports = router;

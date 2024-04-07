@@ -13,14 +13,14 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
 
 ### 1. Retrieve Customer Addresses by Phone Number
 
-- **Endpoint**: `: https://cyan-splendid-bandicoot.cyclic.app/app/api/addresses`
+- **Endpoint**: `: https://cyan-splendid-bandicoot.cyclic.app/app/api/addresses?phoneNumber=`
 - **Method**: `GET`
 - **Description**: Retrieves addresses for a customer based on their phone number.
 - **Required Parameters**:
   - `phoneNumber`: Phone number of the customer.
 - **Sample Request**:
   ```http
-  GET  http://localhost:3000/app/api/addresses?phoneNumber=8210523156
+  GET  https://cyan-splendid-bandicoot.cyclic.app/app/api/addresses?phoneNumber=8210523156
   ```
 - **Sample Response**:
   ```json
@@ -77,14 +77,26 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
   Content-Type: application/json
 
   {
-    "customerId": "123",
-    "addressId": "456",
-    "addressData": {
-      "address": "789 Oak St",
-      "city": "Chicago",
-      "zipcode": "60601"
-    }
+  "addressId": 8619146543262,
+  "addressData": {
+    "first_name": "Aditya",
+"last_name": "Jha",
+"company": null,
+"address1": "madhubani",
+"address2": "Budh nagar coloney",
+"city": "Madhubani",
+"province": "Bihar",
+"country": "India",
+"zip": "847211",
+"phone": null,
+"name": "Aditya Jha",
+"province_code": "BR",
+"country_code": "IN",
+"country_name": "India"
+
   }
+}
+
   ```
 - **Sample Response**:
   ```json
