@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 
     if (order.length===0) {
       logger.error('Order not found');
-      res.status(404).json({eror:`Order ${orderNumber} no found`});
+      res.status(404).json({eror:`Order ${orderNumber} not found`});
       throw new Error('Order not found');
     }
 
