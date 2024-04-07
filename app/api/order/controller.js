@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Shopify = require('shopify-api-node');
-const logger = require('../../../logger'); 
+const logger = require('../../../logger');
 require('dotenv').config();
 
 const Name = process.env.SHOPIFY_SHOP_NAME;
@@ -23,11 +23,11 @@ router.get('/', async (req, res) => {
       password: passKey,
     });
 
-    const order = await shopify.order.get(orderNumber);
+    const order = await shopify.order.list({ query: orderNumber });
 
-    if (!order) {
+    if (order.length === 0) {
       logger.error('Order not found');
-      throw new Error('Order not found');
+      return res.status(404).json({ error: "Order not found" });
     }
 
     logger.info(`Fetched order details for order number: ${orderNumber}`);
@@ -35,6 +35,9 @@ router.get('/', async (req, res) => {
   } catch (error) {
     logger.error(`Error occurred in fetching order details: ${error.message}`);
     console.error('Error occurred in fetching order details:', error);
+    if (error.statusCode === 404) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
     res.status(500).json({ error: 'Internal server error' });
   }
 });

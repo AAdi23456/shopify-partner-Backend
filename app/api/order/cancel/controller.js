@@ -8,6 +8,7 @@ const Name = process.env.SHOPIFY_SHOP_NAME;
 const key = process.env.SHOPIFY_API_KEY;
 const passKey = process.env.SHOPIFY_PASSWORD;
 
+
 router.post('/', async (req, res) => {
   const { orderNumber } = req.body;
 
@@ -23,14 +24,15 @@ router.post('/', async (req, res) => {
       password: passKey,
     });
 
-    const order = await shopify.order.get(orderNumber);
+    const order = await shopify.order.list({ query: orderNumber });
+
 
     if (!order) {
       logger.error('Order not found');
       throw new Error('Order not found');
     }
 
-    const cancelledOrder = await shopify.order.cancel(orderNumber);
+    const cancelledOrder = await shopify.order.cancel(order[0].id);
 
     logger.info(`Order ${orderNumber} has been cancelled`);
     res.json(cancelledOrder);

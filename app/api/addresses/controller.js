@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Shopify = require('shopify-api-node');
-const logger = require('../../../logger'); 
+const logger = require('../../../logger');
 require('dotenv').config();
 
 const Name = process.env.SHOPIFY_SHOP_NAME;
@@ -23,14 +23,16 @@ router.get('/', async (req, res) => {
       password: passKey,
     });
 
-    const customers = await shopify.customer.list({ query: { phone: phoneNumber } });
 
-    if (customers.length === 0) {
-      logger.error('Customer not found');
-      throw new Error('Customer not found');
+    const searchResult = await shopify.customer.search({ query: phoneNumber });
+
+    if (searchResult.length === 0) {
+      return res.status(400).json({ error: 'Customer not found' });
+
     }
 
-    const customerId = customers[0].id;
+    const customerId = searchResult[0].id;
+
 
     const addresses = await shopify.customerAddress.list(customerId);
 
@@ -39,7 +41,10 @@ router.get('/', async (req, res) => {
   } catch (error) {
     logger.error(`Error occurred in fetching customer addresses: ${error.message}`);
     console.error('Error occurred in fetching customer addresses:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    if (error.statusCode === 404) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+    res.status(500).json({ error: error.message });
   }
 });
 
