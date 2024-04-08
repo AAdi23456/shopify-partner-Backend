@@ -1,15 +1,69 @@
-Sure, here is the complete README file:
 
-```markdown
-# API Documentation
 
-This document provides details about the endpoints available in the API.
+# Project Title
+shopify-partner-Backend
+
+## Introduction
+The Shopify API application serves as an interface between a Shopify store and client applications, allowing seamless integration and communication with Shopify's backend services. The application provides various endpoints to perform operations such as retrieving customer addresses, updating addresses, fetching order details, etc.
+
+## Project Type
+ Backend 
 
 ## Base URL
 
 The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
 
-## Endpoints
+## Directory Structure
+
+shopify-partner-Backend/
+│
+├── app.js
+├── logger.js
+├── app/
+│   ├── api/
+│   │   ├── addresses/
+│   │   │   ├── route.js
+│   │   │   └── controller.js
+│   │   │
+│   │   ├── orders/
+│   │   │   ├── route.js
+│   │   │   └── controller.js
+│   │   │
+│   │   ├── order/
+│   │   │   ├── route.js
+│   │   │   └── controller.js
+│   │   │
+│   │   └── order/
+│   │       └── cancel/
+│   │           ├── route.js
+│   │           └── controller.js
+│   │
+│   └── routes/
+│       └── index.js
+
+
+## Installation & Getting started
+git clone https://github.com/AAdi23456/shopify-partner-Backend.git  for downloading github repo.
+
+add .env file and add properties.
+
+SHOPIFY_SHOP_NAME
+SHOPIFY_API_KEY
+SHOPIFY_PASSWORD
+
+
+
+```bash
+npm install 
+cd shopify-partner-Backend
+npm start
+```
+
+## Usage
+
+
+
+## API Endpoints
 
 ### 1. Retrieve Customer Addresses by Phone Number
 
@@ -159,7 +213,6 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
     }
   }
   ```
-
 ## Error Handling
 
 - **400 Bad Request**: Missing or invalid parameters.
@@ -167,3 +220,19 @@ The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
 - **500 Internal Server Error**: Server encountered an unexpected condition.
 ```
 
+## Technology Stack
+List and provide a brief overview of the technologies used in the project.
+
+Node.js: Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows you to execute JavaScript code outside of a browser, making it ideal for building scalable network applications.
+
+Express.js: Express.js is a web application framework for Node.js, designed for building web applications and APIs. It provides a robust set of features for web and mobile applications.
+
+cors: This library provides middleware for enabling CORS (Cross-Origin Resource Sharing) in Express.js applications. CORS is necessary for allowing web applications to make requests to APIs hosted on different domains.
+
+dotenv: dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. It's commonly used to manage environment-specific configurations such as API keys, database URIs, etc.
+
+nodemon: nodemon is a utility that monitors for changes in files and automatically restarts the Node.js application when changes are detected. It's commonly used in development environments to streamline the development process.
+
+shopify-api-node: This library provides a Node.js wrapper for the Shopify API, allowing you to interact with Shopify's services programmatically. It simplifies tasks such as authenticating with Shopify, making API requests, and handling responses.
+
+winston: Winston is a versatile logging library for Node.js, providing support for multiple transports (e.g., console, file, database) and customizable log formatting. It's commonly used to log application events and errors, making it easier to debug and monitor applications in production environments.
