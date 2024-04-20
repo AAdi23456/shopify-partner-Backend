@@ -12,7 +12,7 @@ router.put('/', async (req, res) => {
   try {
     console.log(req.body);
     const {  addressData } = req.body;
-    const { addressId } = req.body;
+    const { addressId } = req.query;
 
     if (!addressId || !addressData) {
       logger.error('Missing required fields');

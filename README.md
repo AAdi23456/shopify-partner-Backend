@@ -123,7 +123,7 @@ npm start
 
 ### 2. Update Customer Address
 
-- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/address/update/`
+- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/address/update?addressId=8619146543262`
 - **Method**: `PUT`
 - **Description**: Updates a customer's address.
 - **Required Parameters**:
@@ -135,7 +135,7 @@ npm start
   Content-Type: application/json
 
   {
-  "addressId": 8619146543262,
+  
   "addressData": {
 "address1": "madhubani",
 "address2": "Budh nagar coloney",
