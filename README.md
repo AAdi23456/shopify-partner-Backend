@@ -9,6 +9,10 @@ The Shopify API application serves as an interface between a Shopify store and c
 ## Project Type
  Backend 
 
+## Demo Video
+`https://drive.google.com/file/d/1A8uC2qzRRdiT-8al00WvfipxDL7VeKb8/view`
+
+
 ## Base URL
 
 The base URL for all endpoints is `https://cyan-splendid-bandicoot.cyclic.app/`.
@@ -128,7 +132,7 @@ npm start
 - **Description**: Updates a customer's address.
 - **Required Parameters**:
  #### Request Parameters
-- `addressId`: ID of the address to be updated (required) in body.
+- `addressId`: ID of the address to be updated (required) in query.
 - `addressData`: New address data in JSON format (required) in body.
 - **Sample Request**:
 
