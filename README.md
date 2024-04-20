@@ -79,49 +79,70 @@ npm start
 - **Sample Response**:
   ```json
   [
-    {
-      "address": "123 Main St",
-      "city": "New York",
-      "zipcode": "10001"
-    },
-    {
-      "address": "456 Elm St",
-      "city": "Los Angeles",
-      "zipcode": "90001"
-    }
-  ]
+ {
+     "id": 8619146543262,
+     "customer_id": 7509855502494,
+     "first_name": "Aditya",
+     "last_name": "Jha",
+     "company": null,
+     "address1": "madhubani",
+     "address2": "Budh nagar coloney",
+     "city": "Madhubani",
+     "province": "Bihar",
+     "country": "India",
+     "zip": "847211",
+     "phone": null,
+     "name": "Aditya Jha",
+     "province_code": "BR",
+     "country_code": "IN",
+     "country_name": "India",
+     "default": true
+ },
+ {
+     "id": 8654462189726,
+     "customer_id": 7509855502494,
+     "first_name": "Aditya",
+     "last_name": "Jha",
+     "company": null,
+     "address1": "Hospital road",
+     "address2": "Budh nagar coloney",
+     "city": "Madhubani",
+     "province": "Bihar",
+     "country": "India",
+     "zip": "847211",
+     "phone": null,
+     "name": "Aditya Jha",
+     "province_code": "BR",
+     "country_code": "IN",
+     "country_name": "India",
+     "default": false
+ }
+]
   ```
 
 
 ### 2. Update Customer Address
 
-- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/address/update/`
+- **Endpoint**: `https://cyan-splendid-bandicoot.cyclic.app/app/api/address/update/?addressId= 8619146543262`
 - **Method**: `PUT`
 - **Description**: Updates a customer's address.
 - **Required Parameters**:
-  - `addressId`: ID of the address to be updated.
-  - `addressData`: New address data.
+ #### Request Parameters
+- `addressId`: ID of the address to be updated (required) in params.
+- `addressData`: New address data in JSON format (required) in body.
 - **Sample Request**:
+
   Content-Type: application/json
 
   {
   "addressId": 8619146543262,
   "addressData": {
-    "first_name": "Aditya",
-"last_name": "Jha",
-"company": null,
 "address1": "madhubani",
 "address2": "Budh nagar coloney",
 "city": "Madhubani",
 "province": "Bihar",
 "country": "India",
 "zip": "847211",
-"phone": null,
-"name": "Aditya Jha",
-"province_code": "BR",
-"country_code": "IN",
-"country_name": "India"
-
   }
 }
 
@@ -129,10 +150,24 @@ npm start
 - **Sample Response**:
   ```json
   {
-    "address": "789 Oak St",
-    "city": "Chicago",
-    "zipcode": "60601"
-  }
+    "customer_id": 7509855502494,
+    "address1": "madhubani",
+    "address2": "Budh nagar coloney",
+    "city": "Madhubani",
+    "company": null,
+    "country": "India",
+    "first_name": "Aditya",
+    "last_name": "Jha",
+    "phone": null,
+    "province": "Bihar",
+    "zip": "847211",
+    "id": 8619146543262,
+    "name": "Aditya Jha",
+    "province_code": "BR",
+    "country_code": "IN",
+    "country_name": "India",
+    "default": true
+}
   ```
 
 
@@ -151,18 +186,69 @@ npm start
   ```json
   [
     {
-      "orderId": "9876543210",
-      "customerName": "Jane Smith",
-      "totalPrice": 75.00,
-      "status": "pending"
+        "id": 5629450289310,
+        "currency": "INR",
+        "total_price": "1486.68",
+        "customer": {
+            "first_name": "Aditya",
+            "last_name": "Jha",
+            "phone": "+918210523156",
+            "default_address": {
+                "address1": "Hospital road",
+                "address2": "Budh nagar coloney",
+                "city": "Madhubani",
+                "province": "Bihar",
+                "country": "India",
+                "zip": "847211"
+            }
+        },
+        "line_items": [
+            {
+                "name": "The Multi-managed Snowboard",
+                "quantity": 2,
+                "price": "1259.90"
+            }
+        ],
+        "tax_lines": [
+            {
+                "title": "IGST",
+                "price": "226.78"
+            }
+        ]
     },
     {
-      "orderId": "5678901234",
-      "customerName": "Alice Johnson",
-      "totalPrice": 120.00,
-      "status": "shipped"
+        "id": 5629440852126,
+        "currency": "INR",
+        "total_price": "884.94",
+        "customer": {
+            "first_name": "Aditya",
+            "last_name": "Jha",
+            "phone": "+918210523156",
+            "default_address": {
+                "address1": "Hospital road",
+                "address2": "Budh nagar coloney",
+                "city": "Madhubani",
+                "province": "Bihar",
+                "country": "India",
+                "zip": "847211"
+            }
+        },
+        "line_items": [
+            {
+                "name": "The Collection Snowboard: Liquid",
+                "quantity": 1,
+                "price": "749.95"
+            }
+        ],
+        "tax_lines": [
+            {
+                "title": "IGST",
+                "price": "134.99"
+            }
+        ]
     }
-  ]
+]
+
   ```
 
 ### 4. Retrieve Order Details by Order Number
@@ -174,16 +260,35 @@ npm start
   - `orderNumber`: Order number of the order to retrieve details.
 - **Sample Request**:
   ```http
-  GET  https://cyan-splendid-bandicoot.cyclic.app/app/api/order?orderNumber=1009
+  GET  https://cyan-splendid-bandicoot.cyclic.app/app/api/order?orderNumber=1010
   ```
 - **Sample Response**:
   ```json
   {
-    "orderId": "1234567890",
-    "customerName": "John Doe",
-    "totalPrice": 100.50,
-    "status": "shipped"
+  "customer_name": "Aditya Jha",
+  "location": {
+    "city": "Madhubani",
+    "province": "Bihar",
+    "country": "India"
+  },
+  "product_ordered": "The Collection Snowboard: Liquid",
+  "vendor": "Hydrogen Vendor",
+  "total_paid": {
+    "amount": 884.94,
+    "currency": "INR"
+  },
+  "taxes": {
+    "IGST": 134.99,
+    "currency": "INR"
+  },
+  "payment_gateway": "bogus",
+  "shipping_method": "Standard",
+  "shipping_cost": {
+    "amount": 0.00,
+    "currency": "INR"
   }
+}
+
   ```
 
 
@@ -200,18 +305,40 @@ npm start
   Content-Type: application/json
 
   {
-    "orderNumber": "1009"
+    "orderNumber": "1010"
   }
   ```
 - **Sample Response**:
   ```json
   {
-    "message": "Order 987654321 has been cancelled",
-    "cancelledOrder": {
-      "orderId": "987654321",
-      "status": "cancelled"
+  "msg": "Order 1009 has been cancelled",
+  "cancelledOrder": {
+    "id": 5629440852126,
+    "cancelled_at": "2024-04-20T06:57:47-04:00",
+    "total_price": "884.94",
+    "currency": "INR",
+    "taxes": {
+      "IGST": 134.99,
+      "currency": "INR"
+    },
+    "line_items": [
+      {
+        "name": "The Collection Snowboard: Liquid",
+        "price": "749.95",
+        "vendor": "Hydrogen Vendor"
+      }
+    ],
+    "shipping_method": "Standard",
+    "shipping_cost": {
+      "amount": 0.00,
+      "currency": "INR"
     }
   }
+}
+
+## NOTE - If you cancel the order using the  order number the the endpoint number 4  is not going to work in that case increase  the order number by 1 for example if the order number 1009 cancelled then increase the order number to 1010 to check  the endpoint 4
+
+
   ```
 ## Error Handling
 
