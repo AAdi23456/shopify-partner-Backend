@@ -174,7 +174,7 @@ npm start
   - `orderNumber`: Order number of the order to retrieve details.
 - **Sample Request**:
   ```http
-  GET /orders?orderNumber=1234567890
+  GET  https://cyan-splendid-bandicoot.cyclic.app/app/api/order?orderNumber=1009
   ```
 - **Sample Response**:
   ```json
@@ -200,7 +200,7 @@ npm start
   Content-Type: application/json
 
   {
-    "orderNumber": "1006"
+    "orderNumber": "1009"
   }
   ```
 - **Sample Response**:
