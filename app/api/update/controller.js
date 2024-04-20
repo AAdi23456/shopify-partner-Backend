@@ -11,9 +11,9 @@ const passKey = process.env.SHOPIFY_PASSWORD;
 router.put('/', async (req, res) => {
   try {
     console.log(req.body);
-    const {  addressData } = req.body;
+    const { addressData } = req.body;
     const { addressId } = req.query;
-
+    addressId = +addressId;
     if (!addressId || !addressData) {
       logger.error('Missing required fields');
       return res.status(400).json({ error: 'Missing required fields' });
